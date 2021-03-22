@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.30" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.0.0-preview7.19365.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0-preview7.19362.6" />
+    <PackageReference Include="Stripe.net" Version="27.24.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Initializer\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Taste.Models\Taste.Models.csproj" />
+    <ProjectReference Include="..\Taste.Utility\Taste.Utility.csproj" />
+  </ItemGroup>
+
+</Project>

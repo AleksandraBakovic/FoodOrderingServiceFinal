@@ -1,0 +1,83 @@
+﻿@page
+@model Taste.Pages.Admin.Order.ManageOrderModel
+@using Taste.Utility
+@{
+    ViewData["Title"] = "ManageOrder";
+}
+
+<h1 class="text-white py-3">Upravljanje porudžbinama</h1>
+<form method="post">
+@if (Model.orderDetailsVM.Count > 0)
+{
+    <div class="container row bg-white p-2 border mb-3 rounded">
+
+        @foreach (var item in Model.orderDetailsVM)
+        {
+        <div class="col-12 pb-3 pt-3 mt-4 border  rounded">
+            <div class="backgroundWhiteBorder10Padding">
+                <div class="row">
+                    <div class="col-4">
+                        Broj porudžbine : @item.OrderHeader.Id
+                        <ul class="text-warning">
+                            @foreach (var details in item.OrderDetails)
+                            {
+                                <li>@details.Name x @details.Count</li>
+                            }
+
+                        </ul>
+                    </div>
+                    <div class="col-4 pb-2">
+                        <div class="input-group pb-2">
+                            <div class="input-group-append">
+                                <span class="input-group-text text-warning bg-white border-0">Vreme</span>
+                            </div>
+                            <input type="text" class="border rounded form-control" readonly value="@item.OrderHeader.PickUpTime" />
+                        </div>
+                        @{ 
+                            var comments = item.OrderHeader.Comments;
+                            if (comments == null || comments.Trim().Length == 0)
+                            {
+                                item.OrderHeader.Comments = "Nema dodatnih instrukcija.";
+                            }
+                        }
+                        <textarea asp-for="@item.OrderHeader.Comments" readonly class="rounded border form-control" style="width:100%;height:75px;"></textarea>
+                    </div>
+                    <div class="col-3 offset-1 d-flex align-content-center">
+                        <div class="col-12">
+
+                            @if (item.OrderHeader.Status.Equals(SD.StatusSubmitted) && User.IsInRole(SD.KitchenRole))
+                            {
+                                <button type="submit" class="btn btn-block text-white button-confirm hvr-wobble-horizontal " style="background-color:rgba(191, 155, 56, 0.84) !important;"  asp-page-handler="OrderPrepare" asp-route-OrderId="@item.OrderHeader.Id">
+                                    <i class="fas fa-check"></i> &nbsp; Započni kuvanje
+                                </button>
+                            }
+                            else
+                            {
+                                if (item.OrderHeader.Status.Equals(SD.StatusInProcess))
+                                {
+                                    <button type="submit"  class="btn btn-block text-white button-confirm hvr-wobble-horizontal "style="background-color:rgba(191, 155, 56, 0.84) !important;" asp-page-handler="OrderReady" asp-route-OrderId="@item.OrderHeader.Id">
+                                        <i class="fas fa-flag-checkered"></i> &nbsp; Porudžbina spremna
+                                    </button>
+                                }
+                            }
+
+                            @if (User.IsInRole(SD.ManagerRole) || User.IsInRole(SD.FrontDeskRole))
+                            {
+                                <button type="submit"class="btn btn-block text-white button-confirm hvr-wobble-horizontal " style="background-color:rgba(56, 56, 56, 0.87) !important;" asp-page-handler="OrderCancel" asp-route-OrderId="@item.OrderHeader.Id">
+                                    <i class="fas fa-times"></i> &nbsp; Otkaži porudžbinu
+                                </button>
+                                <button type="submit" class="btn btn-block text-white button-confirm hvr-wobble-horizontal" style="background-color:rgba(235, 39, 26, 0.82) !important;" asp-page-handler="OrderRefund" asp-route-OrderId="@item.OrderHeader.Id">
+                                    <i class="fas fa-times"></i> &nbsp; Refundiraj porudžbinu
+                                </button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+}
+</form>
+
+

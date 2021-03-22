@@ -1,0 +1,38 @@
+﻿@page
+@using Taste.Utility
+
+
+@if (User.IsInRole(SD.ManagerRole))
+{
+    <div class="border backgroundWhite container">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-dark">Spisak proizvoda</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-page="Upsert" class="btn btn-block text-white button-confirm hvr-wobble-horizontal " style="background-color:rgba(191, 155, 56, 0.84) !important;"><i class="fas fa-plus"></i> &nbsp; Kreiraj novi proizvod</a>
+        </div>
+    </div>
+    <br /><br />
+    <table id="DT_load" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Naziv</th>
+                <th>Cena</th>
+                <th>Kategorija</th>
+                <th>Vrsta hrane i pića</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+}
+else{
+    <div>
+        <h1 class="text-danger"> Pristup je odbijen!</h1>
+    </div>
+}
+@section Scripts{
+    <script src="~/js/menuItem.js"></script>
+}
+

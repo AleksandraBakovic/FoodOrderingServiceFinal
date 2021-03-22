@@ -1,0 +1,9 @@
+﻿.list-group-item {
+    background-color: white !important;
+    color: black !important;
+}
+
+    .list-group-item .nav-link.active {
+        background-color: rgba(191, 155, 56, 0.84) !important;
+        color: black !important;
+    }

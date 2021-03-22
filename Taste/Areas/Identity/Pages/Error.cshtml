@@ -1,0 +1,23 @@
+﻿@page
+@model ErrorModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+    <h1 class="text-danger">Greška.</h1>
+<h2 class="text-danger"> Došlo je do greške prilikom obrade vašeg zahteva.</h2>
+
+@if (Model.ShowRequestId)
+{
+    <p>
+        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+    </p>
+}
+
+<h3>Development Mode</h3>
+<p>
+    Zamenom <strong>Development</strong> okruženja prikazaće se detaljnije informacije o grešci koja se dogodila.
+</p>
+<p>
+    <strong>Razvojno okruženje ne bi trebalo biti omogućeno u postavljenim aplikacijama</strong>, jer može rezultirati prikazivanjem osetljivih informacija krajnjim korisnicima. Za lokalno otklanjanje grešaka, razvojno okruženje može se omogućiti postavljanjem <strong>ASPNETCORE_ENVIRONMENT</strong> okruženja koje je promenljivo <strong>Development</strong>,i ponovno pokretanje aplikacije.
+</p>

@@ -1,0 +1,69 @@
+﻿@page
+@model Taste.Pages.Admin.Order.OrderListModel
+@{
+    ViewData["Title"] = "OrderList";
+}
+
+@{
+    var status = HttpContext.Request.Query["status"];
+    var cancelled = "text-primary";
+    var completed = "text-primary";
+    var inProcess = "text-primary";
+
+    if (status == "cancelled")
+    {
+        cancelled = "active text-white";
+    }
+    else
+    {
+        if (status == "completed")
+        {
+            completed = "active text-white";
+        }
+        else
+        {
+            inProcess = "active text-white";
+        }
+    }
+
+}
+
+
+<div class="border backgroundWhite container">
+    <div class="d-flex justify-content-between mb-3">
+        <div class="p-2">
+            <h2>Spisak porudžbina</h2>
+        </div>
+        <div class="p-2">
+            <ul class="list-group list-group-horizontal-sm">
+                <a style="text-decoration:none;" asp-page="OrderList" asp-route-status="cancelled">
+                    <li style="border:rgba(191, 155, 56, 0.84);" class="list-group-item @cancelled"> Otkazano </li>
+                </a>
+                <a style="text-decoration:none;" asp-page="OrderList" asp-route-status="completed">
+                    <li style="border:rgba(191, 155, 56, 0.84);" class="list-group-item @completed"> Gotovo </li>
+                </a>
+                <a style="text-decoration:none;" asp-page="OrderList" asp-route-status="inProcess">
+                    <li style="border:rgba(191, 155, 56, 0.84);" class="list-group-item @inProcess"> U procesu izrade </li>
+                </a>
+            </ul>
+        </div>
+    </div>
+    <br /><br />
+    <table id="DT_load" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Broj porudžbine</th>
+                <th>Ime</th>
+
+                <th>Email</th>
+                <th>Ukupno</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts{
+    <script src="~/js/orderList.js"></script>
+}
+

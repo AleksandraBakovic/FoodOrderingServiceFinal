@@ -1,0 +1,53 @@
+﻿@page
+@model EnableAuthenticatorModel
+@{
+    ViewData["Title"] = "Konfiguriši 2FA aplikaciju";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+<h4 class="text-white">@ViewData["Title"]</h4>
+<div>
+    <p class="text-white">Kako biste koristili aplikaciju autentifikatora molimo Vas pratite sledeće korake:</p>
+    <ol class="list">
+        <li>
+            <p class="text-white">
+                Nabavi two-factor aplikaciju kao Microsoft Authenticator za
+                <a class="text-warning" href="https://go.microsoft.com/fwlink/?Linkid=825071">Windows telefon</a>,
+                <a class="text-warning" href="https://go.microsoft.com/fwlink/?Linkid=825072">Android</a> ili
+                <a class="text-warning" href="https://go.microsoft.com/fwlink/?Linkid=825073">iOS</a> ili
+                Google Authenticator za
+                <a class="text-warning" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en">Android</a> ili
+                <a class="text-warning" href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">iOS</a>.
+            </p>
+        </li>
+        <li>
+            <p class="text-white">Skeniraj QR Code ili unesi ovaj kod <kbd>@Model.SharedKey</kbd> u Vašu two factor autentifikator aplikaciju. Razmaci i velika/mala slova nemaju razlike.</p>
+            <div class="alert alert-dark">Nauči kako <a class="text-warning" href="https://go.microsoft.com/fwlink/?Linkid=852423">da omogućiš QR kod</a></div>
+            <div id="qrCode"></div>
+            <div id="qrCodeData" data-url="@Html.Raw(@Model.AuthenticatorUri)"></div>
+        </li>
+        <li>
+            <p class="text-white">
+                Nakon što ste skenirali QR kod ili unesi kod iznad, Vaša aplikacija će Vam predstaviti kod. Unesite kod u polje ispod.
+            </p>
+            <div class="row">
+                <div class="col-md-6">
+                    <form id="send-code" method="post">
+                        <div class="form-group">
+                            <label class="text-white" asp-for="Input.Code" class="control-label">Verifikujte kod:</label>
+                            <input asp-for="Input.Code" class="form-control" autocomplete="off" />
+                            <span asp-validation-for="Input.Code" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-block text-white button-confirm hvr-wobble-horizontal " style="background-color:rgba(191, 155, 56, 0.84) !important;">Verifikuj</button>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    </form>
+                </div>
+            </div>
+        </li>
+    </ol>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

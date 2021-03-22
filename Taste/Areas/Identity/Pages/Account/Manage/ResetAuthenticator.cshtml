@@ -1,0 +1,24 @@
+﻿@page
+@model ResetAuthenticatorModel
+@{
+    ViewData["Title"] = "Resetuj 2FA autentifikator kod";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+<h4 class="text-white">@ViewData["Title"]</h4>
+<div class="alert alert-dark" role="alert">
+    <p>
+        <span class="glyphicon glyphicon-warning-sign text-white"></span>
+        <strong class="text-white">Ako resetujete šifru Vaše 2FA autentifikator aplikacije, nećete biti u mogućnosti da je koristite dok je ponovo ne konfigurišete.</strong>
+    </p>
+    <p class="text-white">
+        Ovaj proces onemogućava 2FA dok ne verifikujete Vaš 2FA autentifikator.
+        Ako ne uspete do kraja da izvršite ovaj proces, izgubićete sve podatke.
+    </p>
+</div>
+<div>
+    <form id="reset-authenticator-form" method="post" class="form-group">
+        <button id="reset-authenticator-button" class="btn btn-block text-white button-confirm hvr-wobble-horizontal " style="background-color:rgba(191, 155, 56, 0.84) !important;" type="submit">Resetuj kod</button>
+    </form>
+</div>

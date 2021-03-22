@@ -1,0 +1,13 @@
+﻿.navbar-main {
+    background-color: rgba(30, 28, 28, 0.89);
+    color:dimgray;
+}
+
+body {
+    background-image: url("../images/aqua05.jpg") !important;
+}
+
+footer {
+    background-color: rgba(30, 28, 28, 0.89);
+    color: dimgray;
+}

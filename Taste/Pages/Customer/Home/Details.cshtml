@@ -1,0 +1,75 @@
+﻿@page
+@model Taste.Pages.Customer.Home.DetailsModel
+@using Taste.Utility
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div style="padding-top: 50px;">
+    <form method="post">
+        <input type="hidden" asp-for="ShoppingCartObj.MenuItemId" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="card">
+                <div class="card-header bg-light text-light ml-0 row container" style="    border: 2px solid white !important;
+    border-radius: 30px 10px !important;">
+                    <div class="col-12 col-md-6">
+                        <h1>@Model.ShoppingCartObj.MenuItem.Name</h1>
+                    </div>
+                    <div class="col-12 col-md-6 text-md-right">
+                        <h1 class="text-muted"> @(Model.ShoppingCartObj.MenuItem.Price),00 RSD</h1>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="container rounded p-2">
+                        <div class="row">
+                            <div class="col-12 col-lg-8">
+                                <div class="row">
+
+                                    <div class="col-12">
+                                        <span class="badge badge-warning h3">@Model.ShoppingCartObj.MenuItem.Category.Name</span>
+                                        <span class="badge badge-dark">@Model.ShoppingCartObj.MenuItem.FoodType.Name</span>
+                                        <h3 class="text-success"></h3>
+
+                                        <p class="text-secondary">@Html.Raw(Model.ShoppingCartObj.MenuItem.Description)</p>
+                                        @if (User.IsInRole(SD.CustomerRole)) {
+                                            <div class="row py-4">
+                                                <div class="col-2"><label class="h3"> Količina </label></div>
+                                                <div class="col-10">
+                                                    <input type="text" asp-for="ShoppingCartObj.Count" class="form-control rounded" height="40px;" />
+                                                    <span asp-validation-for="ShoppingCartObj.Count" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 p-1 text-center">
+                                <img src="@Model.ShoppingCartObj.MenuItem.Image" width="100%" class="rounded" />
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-12 col-md-6 pb-1 ">
+                            <button  class="btn hvr-wobble-horizontal btn-square form-control btn-lg button-confirm text-white text-center" style="height:50px; background-color: rgba(30, 28, 28, 0.89);"><a class="text-white text-center" asp-page="Index" >Vrati se nazad</a></button>
+                        </div>
+                        @if (User.IsInRole(SD.CustomerRole))
+                        {
+                            <div class="col-12 col-md-6 pb-1">
+                                <button type="submit" class="btn hvr-wobble-horizontal btn-square form-control btn-lg button-confirm text-white" style="height:50px;background-color: rgba(191, 155, 56, 0.84);">Dodaj u korpu</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

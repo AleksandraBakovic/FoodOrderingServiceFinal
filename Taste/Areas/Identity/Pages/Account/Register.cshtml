@@ -1,0 +1,114 @@
+﻿@page
+@model RegisterModel
+@using Taste.Utility
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+
+
+<div class="py-4 my-4">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-div">
+        <form method="post" autocomplete="off" asp-route-returnUrl="@Model.ReturnUrl">
+            <h3 class="col-12 text-center py-4">
+                @if (User.IsInRole(SD.ManagerRole))
+                {
+                    <strong>Registruj novog zaposlenog</strong>
+                }
+                else
+                {
+                    <strong>Registruj se</strong>
+                }
+            </h3>
+            <hr />
+            <div class="form-row py-2">
+                <div class="col">
+                    <div>
+                        <input type="text" asp-for="Input.FirstName" autocomplete="off" placeholder="Ime" class="form-control" />
+                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div>
+                        <input type="text" asp-for="Input.LastName" autocomplete="off" placeholder="Prezime" class="form-control" />
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="py-2">
+                <input type="email" asp-for="Input.Email" autocomplete="off" placeholder="Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="py-2">
+                <input type="text" asp-for="Input.PhoneNumber" autocomplete="off" placeholder="Broj telefona" class="form-control" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="py-2">
+                <input type="password" asp-for="Input.Password" autocomplete="off" placeholder="Šifra" class="form-control" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="py-2">
+                <input type="password" asp-for="Input.ConfirmPassword" autocomplete="off" placeholder="Potvrdi šifru" class="form-control" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            @if (User.IsInRole(SD.ManagerRole))
+            {
+                <div class="py-2">
+                    <input type="radio" name="rdUserRole" value="@SD.KitchenRole" /> Kuvar
+                    <input type="radio" name="rdUserRole" value="@SD.FrontDeskRole" /> Konobar
+                    <input type="radio" name="rdUserRole" value="@SD.ManagerRole" /> Menadžer
+                </div>
+            }
+            <div class="py-2">
+                <button type="submit" style="background-color: rgba(30, 28, 28, 0.89);border-radius: 10px 5px;" class="btn btn-success btn-block hvr-wobble-horizontal "><i class="fas fa-sign-in-alt"></i> Registruj se </button>
+            </div>
+
+        </form>
+
+        @if (!User.IsInRole(SD.ManagerRole))
+        {
+
+
+            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                <p>
+                    Klikom na ovo dugme <em>Registruj se</em> Vi se slažete sa našim <a href="" target="_blank"> uslovima korišćenja </a>
+                </p>
+                <hr />
+                <div class="row">
+                    @foreach (var provider in Model.ExternalLogins)
+                    {
+                    <div class="col-6">
+                        @if (provider.Name.ToLower().Contains("facebook"))
+                        {
+                            <button type="submit" class="btn btn-block facebook-btn form-control hvr-wobble-horizontal" name="provider" value="@provider.Name"><span class="fa fa-facebook"></span> Registruj se sa @provider.Name</button>
+                        }
+                        else
+                        {
+                            @if (provider.Name.ToLower().Contains("micro"))
+                            {
+                                <button type="submit" class="btn btn-block microsoft-btn form-control hvr-wobble-horizontal" name="provider" value="@provider.Name" title="Prijavi se koristeći svoj @provider.DisplayName nalog"><i class="fab fa-windows"></i> Registruj se sa @provider.DisplayName</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-primary hvr-wobble-horizontal" name="provider" value="@provider.Name" title="Prijavi se koristeći svoj @provider.DisplayName nalog">@provider.DisplayName</button>
+                            }
+                        }
+                    </div>
+
+                    }
+                </div>
+            </form>
+        }
+    </div>
+</div>
+<img class="img-waitress" style="width:35%" src="~/images/png-clipart-waiter-diner-retro-style-others-miscellaneous-hand.png">
+
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,95 @@
+﻿@page
+@model Taste.Pages.Customer.Cart.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <form method="post">
+
+        <br />
+
+        @if (Model.OrderDetailsCartVM.listCart.Count > 0)
+        {
+
+            <input asp-for="@Model.OrderDetailsCartVM.listCart[0].ApplicationUserId" hidden />
+            <div class="backgroundWhiteBorder">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-header bg-light text-dark ml-0 row container "style="border: 2px solid white !important; border-radius: 30px 10px !important;">
+                            <div class="col-6">
+                                <i class="fa fa-shopping-cart"></i> &nbsp;
+                                Korpa
+                            </div>
+                            <div class="col-6 text-right">
+                                <a asp-page="../Home/Index" class=" button-confirm btn btn-outline-light btn-sm">Nastavi kupovinu</a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            @foreach (var item in Model.OrderDetailsCartVM.listCart)
+                            {
+                                <div class="row">
+                                    <div class="d-none d-lg-block col-lg-2 text-center py-2">
+                                        <img src="@item.MenuItem.Image" class="rounded" width="120" height="80" />
+                                    </div>
+                                    <div class="col-12 text-sm-center col-lg-5 text-lg-left">
+                                        <h4><strong>@item.MenuItem.Name</strong></h4>
+                                    </div>
+                                    <div class="col-12 text-sm-center col-lg-5 text-lg-right row">
+                                        <div class="col-4 text-md-right" style="padding-top:5px;">
+                                            <h6><strong>$@item.MenuItem.Price <span class="text-muted">x</span> @item.Count </strong></h6>
+                                        </div>
+                                        <div class="col-6 col-sm-4 col-lg-6">
+                                            <div class="float-right mx-1">
+                                                <button type="submit" class="btn btn-outline-warning" asp-page-handler="plus" asp-route-cartId="@item.Id">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                            <div class="float-right mx-1">
+                                                <button type="submit" class="btn btn-outline-dark" asp-page-handler="minus" asp-route-cartId="@item.Id">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 col-sm-4 col-lg-2 text-right">
+                                            <button type="submit" class="btn btn-outline-dark" asp-page-handler="remove" asp-route-cartId="@item.Id">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                            }
+
+                            <div class="row">
+                                <div class="col-12 col-md-5">
+
+                                </div>
+                                <div class="col-12 col-md-6 offset-md-1 col-lg-4 offset-lg-3 pr-4">
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between bg-light">
+                                            <span class="text-dark"> Ukupno (RSD)</span>
+                                            <strong class="text-dark">RSD <span id="txtOrderTotal">@Model.OrderDetailsCartVM.OrderHeader.OrderTotal.ToString("0.00")</span></strong>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="card-footer">
+                            <div class="col-12 col-lg-4 offset-lg-8 col-md-6 offset-md-6">
+                                <a asp-page="Summary" class="btn btn-success button-confirm form-control hvr-wobble-horizontal" style="background-color: rgba(191, 155, 56, 0.84) !important;">Ukupno</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div>
+                Molimo Vas dodajte neki od proizvoda iz naše ponude.
+            </div>
+        }
+    </form>
+

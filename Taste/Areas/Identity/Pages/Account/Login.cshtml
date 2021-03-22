@@ -1,0 +1,49 @@
+﻿@page
+@model LoginModel
+
+<div class="form-div">
+    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+        <h1 class="h3 mb-3 font-weight-normal" style="text-align:center">Prijavi se</h1>
+        <div class="social-login form-social-login pb-0 mb-0">
+            @if (Model.ExternalLogins?.Count > 0)
+            {
+                @foreach (var provider in Model.ExternalLogins)
+                {
+
+                    @if (provider.Name.ToLower().Contains("facebook"))
+                    {
+                        <button type="submit" class="btn btn-social-icon facebook-btn form-control hvr-wobble-horizontal" name="provider" value="@provider.Name"><span class="fa fa-facebook"></span> Prijavi se sa @provider.Name</button>
+                    }
+                    else
+                    {
+                        @if (provider.Name.ToLower().Contains("micro"))
+                        {
+                            <button type="submit" class="btn btn-social-icon microsoft-btn form-control hvr-wobble-horizontal" name="provider" value="@provider.Name"><span class="fab fa-microsoft"></span> Prijavi se sa @provider.Name</button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="btn btn-primary hvr-wobble-horizontal" name="provider" value="@provider.Name" title="Prijavi se koristeći svoj @provider.DisplayName nalog">@provider.DisplayName</button>
+                        }
+                    }
+
+                }
+            }
+        </div>
+    </form>
+    <form id="account" method="post">
+        @if (Model.ExternalLogins?.Count > 0)
+        {
+            <p style="text-align:center"> ILI </p>
+        }
+        <input asp-for="Input.Email" placeholder="Email..." type="email" required="" autofocus="" class="mb-1 form-control" />
+        <input asp-for="Input.Password" placeholder="Šifra..." type="password" required="" class="form-control" />
+        <button type="submit" class="btn btn-success btn-block button-confirm hvr-wobble-horizontal "><i class="fas fa-sign-in-alt"></i> Prijavi se</button>
+        <a id="forgot-password" asp-page="./ForgotPassword" class="pb-2">Zaboravili ste šifru?</a>
+        <div asp-validation-summary="All" class="text-danger"></div>
+    </form>
+</div>
+<img class="img-waitress" style="width:35%" src="~/images/png-clipart-waiter-diner-retro-style-others-miscellaneous-hand.png">
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

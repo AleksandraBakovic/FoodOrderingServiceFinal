@@ -1,0 +1,36 @@
+﻿h3 {
+    color: rgba(30, 28, 28, 0.89) !important;
+}
+
+.card {
+    border: 2px solid rgba(30, 28, 28, 0.89);
+    border-radius: 30px 10px;
+}
+
+.card-img-top {
+    border: 2px solid white !important;
+    border-radius: 30px 10px !important;
+}
+
+.badge {
+    border: 2px solid white !important;
+    border-radius: 10px 5px !important;
+    background-color: rgba(191, 155, 56, 0.84);
+    text-align:center;
+    padding-top: 2px;
+}
+
+.rounded {
+    border: 2px solid white !important;
+    border-radius: 10px 5px !important;
+}
+
+.list-group-item {
+    background-color: white !important;
+    color: black !important;
+}
+
+    .list-group-item.active {
+        background-color: rgba(191, 155, 56, 0.84) !important;
+        color: black !important;
+    }

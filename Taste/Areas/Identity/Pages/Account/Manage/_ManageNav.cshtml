@@ -1,0 +1,15 @@
+﻿@inject SignInManager<IdentityUser> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+<ul class="list-group list-group-vertical-sm">
+    <li style="border: 1px solid rgba(191, 155, 56, 0.84);" class="list-group-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profil</a></li>
+    <li style="border: 1px solid rgba(191, 155, 56, 0.84);"  class="list-group-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
+    <li style="border: 1px solid rgba(191, 155, 56, 0.84);"  class="list-group-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Šifra</a></li>
+    @if (hasExternalLogins)
+    {
+        <li id="external-logins" style="border: 1px solid rgba(191, 155, 56, 0.84);"  class="list-group-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">Eksterni profili</a></li>
+    }
+    <li style="border: 1px solid rgba(191, 155, 56, 0.84);" class="list-group-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor autentifikacija</a></li>
+    <li style="border: 1px solid rgba(191, 155, 56, 0.84);"  class="list-group-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Podaci</a></li>
+</ul>

@@ -1,0 +1,136 @@
+﻿@page
+@model Taste.Pages.Admin.MenuItem.UpsertModel
+
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+    <div class="container">
+        <div class="row px-2 mx-2 backgroundWhite border">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if (Model.MenuItemObj.MenuItem.Id != 0)
+            {
+                <input type="hidden" asp-for="MenuItemObj.MenuItem.Id" />
+            }
+
+            <div class="col-12 px-3" style="border-bottom:1px solid #325d88">
+                <h2 class="text-primary">@(Model.MenuItemObj.MenuItem.Id != 0 ? "Izmeni" : "Kreiraj") proizvod</h2>
+            </div>
+
+            <div class="col-8 pt-3">
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label >Naziv proizvoda</label>
+                    </div>
+                    <div class="col-9">
+                        <input id="name" class="form-control" asp-for="MenuItemObj.MenuItem.Name" />
+                        <span class="text-danger" asp-validation-for="MenuItemObj.MenuItem.Name"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label>Cena</label>
+                    </div>
+                    <div class="col-9">
+                        <input id="price" class="form-control" asp-for="MenuItemObj.MenuItem.Price" />
+                        <span class="text-danger" asp-validation-for="MenuItemObj.MenuItem.Price"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label>Opis</label>
+                    </div>
+                    <div class="col-9">
+                        <textarea class="form-control" asp-for="MenuItemObj.MenuItem.Description" id="txtDesc" style="height:200px;"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label>Fotografija</label>
+                    </div>
+                    <div class="col-9">
+                        <input type="file" class="form-control" name="files" id="uploadBox" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label>Kategorija</label>
+                    </div>
+                    <div class="col-9">
+                        @Html.DropDownListFor(m => m.MenuItemObj.MenuItem.CategoryId,
+                             Model.MenuItemObj.CategoryList,
+                             "- Molimo Vas da izaberete kategoriju -",
+                             new { required = "required", @class = "form-control" })
+                        <span class="text-danger" asp-validation-for="MenuItemObj.MenuItem.CategoryId"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label>Vrsta hrane/pića</label>
+                    </div>
+                    <div class="col-9">
+                        @Html.DropDownListFor(m => m.MenuItemObj.MenuItem.FoodTypeId,
+                                                Model.MenuItemObj.FoodTypeList,
+                                                "- Molimo Vas da izaberete vrstu hrane/pića -",
+                                                new { required = "required", @class = "form-control" })
+                        <span class="text-danger" asp-validation-for="MenuItemObj.MenuItem.FoodTypeId"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-9 offset-3">
+                        <div class="row">
+                            <div class="col-6">
+
+                                @if (Model.MenuItemObj.MenuItem.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-block text-white button-confirm hvr-wobble-horizontal " style="background-color:rgba(191, 155, 56, 0.84) !important;">Izmeni</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" onclick="return ValidateInput()" class="btn btn-block text-white button-confirm hvr-wobble-horizontal " style="background-color:rgba(191, 155, 56, 0.84) !important;">Kreiraj</button>
+                                }
+
+                            </div>
+                            <div class="col-6">
+                                <a asp-page="./Index" class="btn btn-block text-white button-confirm hvr-wobble-horizontal " style="background-color:black !important;">Vrati se na spisak</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.MenuItemObj.MenuItem != null)
+            {
+                <div class="col-4 p-4">
+                    <img src="@Model.MenuItemObj.MenuItem.Image" width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
+                </div>
+            }
+
+
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: "lists",
+            menubar: 'file edit format'
+        });
+
+        function ValidateInput() {
+            if (document.getElementById("uploadBox").value == "") {
+                swal("Error", "Molimo Vas da selektujete fotografiju", "error")
+                return false;
+            } else if (document.getElementById("price").value <= 0) {
+                swal("Error", "Molimo Vas unesite cenu veću od 1 dinar.", "error")
+                return false;
+            } else if (document.getElementById("name").value <= 0) {
+                swal("Error", "Molimo Vas unesite naziv proizvoda", "error")
+                return false;
+            } 
+            return true;
+        };
+    </script>
+
+    
+}
