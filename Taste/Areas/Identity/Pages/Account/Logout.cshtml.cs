@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,7 +32,7 @@ namespace Taste.Areas.Identity.Pages.Account
         {
             HttpContext.Session.SetInt32(SD.ShoppingCart, 0);
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
+            _logger.LogInformation("Korisnik se odjavio.");
             if (returnUrl != null)
             {
                 return LocalRedirect(returnUrl);

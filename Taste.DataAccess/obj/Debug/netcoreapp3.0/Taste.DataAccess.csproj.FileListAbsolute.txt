@@ -1,0 +1,14 @@
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.DataAccess\bin\Debug\netcoreapp3.0\Taste.DataAccess.deps.json
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.DataAccess\bin\Debug\netcoreapp3.0\Taste.DataAccess.dll
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.DataAccess\bin\Debug\netcoreapp3.0\Taste.DataAccess.pdb
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.DataAccess\bin\Debug\netcoreapp3.0\Taste.Models.dll
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.DataAccess\bin\Debug\netcoreapp3.0\Taste.Utility.dll
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.DataAccess\bin\Debug\netcoreapp3.0\Taste.Models.pdb
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.DataAccess\bin\Debug\netcoreapp3.0\Taste.Utility.pdb
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.DataAccess\obj\Debug\netcoreapp3.0\Taste.DataAccess.csprojAssemblyReference.cache
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.DataAccess\obj\Debug\netcoreapp3.0\Taste.DataAccess.AssemblyInfoInputs.cache
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.DataAccess\obj\Debug\netcoreapp3.0\Taste.DataAccess.AssemblyInfo.cs
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.DataAccess\obj\Debug\netcoreapp3.0\Taste.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.DataAccess\obj\Debug\netcoreapp3.0\Taste.DataAccess.csproj.CopyComplete
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.DataAccess\obj\Debug\netcoreapp3.0\Taste.DataAccess.dll
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.DataAccess\obj\Debug\netcoreapp3.0\Taste.DataAccess.pdb

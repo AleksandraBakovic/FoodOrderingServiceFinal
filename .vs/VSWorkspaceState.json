@@ -1,8 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Taste"
+    "\\Taste",
+    "\\Taste.DataAccess",
+    "\\Taste.DataAccess\\Migrations",
+    "\\Taste\\Areas\\Identity",
+    "\\Taste\\Controllers",
+    "\\Taste\\obj"
   ],
-  "SelectedNode": "\\Taste\\Startup.cs",
+  "SelectedNode": "\\Taste.DataAccess\\Migrations",
   "PreviewInSolutionExplorer": false
 }

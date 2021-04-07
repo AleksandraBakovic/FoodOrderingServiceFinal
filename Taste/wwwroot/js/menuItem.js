@@ -1,4 +1,4 @@
-﻿var dataTable;
+var dataTable;
 
 $(document).ready(function () {
     loadList();
@@ -20,10 +20,12 @@ function loadList() {
                 "data": "id",
                 "render": function (data) {
                     return ` <div class="text-center">
-                                <a href="/Admin/MenuItem/upsert?id=${data}" class="btn btn-block text-white button-confirm hvr-wobble-horizontal " style="background-color:rgba(191, 155, 56, 0.84) !important">
+                                <a href="/Admin/MenuItem/upsert?id=${data}" class="btn btn-block text-white button-confirm hvr-wobble-horizontal"
+                                    style="background-color:rgba(191, 155, 56, 0.84) !important">
                                     <i class="far fa-edit"></i> Izmeni
                                 </a>
-                                <a class="btn btn-block text-white button-confirm hvr-wobble-horizontal " style="background-color:rgba(30, 28, 28, 0.89) !important" onclick=Delete('/api/MenuItem/'+${data})>
+                                <a class="btn btn-block text-white button-confirm hvr-wobble-horizontal"
+                                    style="background-color:rgba(30, 28, 28, 0.89) !important" onclick=Delete('/api/MenuItem/'+${data})>
                                     <i class="far fa-trash-alt"></i> Obriši
                                 </a>
                     </div>`;

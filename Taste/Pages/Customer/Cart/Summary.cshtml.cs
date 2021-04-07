@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -104,7 +104,7 @@ namespace Taste.Pages.Customer.Cart
                 {
                     //Amount is in cents
                     Amount = Convert.ToInt32(detailCart.OrderHeader.OrderTotal * 100),
-                    Currency = "usd",
+                    Currency = "RSD",
                     Description = "Order ID : " + detailCart.OrderHeader.Id,
                     Source = stripeToken
                 };

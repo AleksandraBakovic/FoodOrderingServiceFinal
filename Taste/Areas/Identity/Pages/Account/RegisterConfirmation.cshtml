@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model RegisterConfirmationModel
 @{
     ViewData["Title"] = "Potvrda registracije";
@@ -10,8 +10,8 @@
     {
         <br>
     <p class="text-white">
-        Ova aplikacija trenutno nema pravog pošiljatelja e-pošte, pogledajte <a href="https://aka.ms/aspaccountconf">ovaj dokument</a>kako konfigurirati pravog pošiljatelja e-pošte.
-        Obično bi se ovo poslalo e-poštom: <a id="confirm-link" href="@Model.EmailConfirmationUrl">Kliknite ovde da potvrdite svoj profil.</a>
+        Ova aplikacija trenutno nema pravog pošiljaoca e-pošte, pogledajte <a href="https://aka.ms/aspaccountconf">ovaj dokument</a> kako konfigurisati pravog pošiljaoca e-pošte.
+        Obično bi se ovo poslalo e-poštom: <a id="confirm-link" href="@Model.EmailConfirmationUrl"> <br>Kliknite ovde da potvrdite svoj profil. </a>
     </p>
     }
     else

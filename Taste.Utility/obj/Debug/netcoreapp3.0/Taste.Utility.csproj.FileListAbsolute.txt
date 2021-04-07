@@ -1,0 +1,9 @@
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.Utility\bin\Debug\netcoreapp3.0\Taste.Utility.deps.json
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.Utility\bin\Debug\netcoreapp3.0\Taste.Utility.dll
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.Utility\bin\Debug\netcoreapp3.0\Taste.Utility.pdb
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.Utility\obj\Debug\netcoreapp3.0\Taste.Utility.csprojAssemblyReference.cache
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.Utility\obj\Debug\netcoreapp3.0\Taste.Utility.AssemblyInfoInputs.cache
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.Utility\obj\Debug\netcoreapp3.0\Taste.Utility.AssemblyInfo.cs
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.Utility\obj\Debug\netcoreapp3.0\Taste.Utility.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.Utility\obj\Debug\netcoreapp3.0\Taste.Utility.dll
+C:\Users\Dell\Desktop\DIPLOMSKI\FoodOrderingServiceFinal\Taste.Utility\obj\Debug\netcoreapp3.0\Taste.Utility.pdb

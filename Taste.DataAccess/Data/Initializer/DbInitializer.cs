@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -50,8 +50,8 @@ namespace Taste.DataAccess.Data.Initializer
                 UserName = "admin@gmail.com",
                 Email = "admin@gmail.com",
                 EmailConfirmed = true,
-                FirstName = "Bhrugen",
-                LastName = "Patel"
+                FirstName = "Aleksandra",
+                LastName = "Baković"
             }, "Admin123*").GetAwaiter().GetResult();
 
             ApplicationUser user = _db.ApplicationUser.Where

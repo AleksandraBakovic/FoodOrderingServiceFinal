@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -63,7 +63,7 @@ namespace Taste.Areas.Identity.Pages.Account
 
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare("Password", ErrorMessage = "Lozinka i lozinka za potvrdu se ne podudaraju.")]
             public string ConfirmPassword { get; set; }
 
             [Required]
@@ -131,7 +131,7 @@ namespace Taste.Areas.Identity.Pages.Account
                     }
 
 
-                    _logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation("Korisnik je otvorio novi nalog sa lozinkom.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
@@ -141,8 +141,8 @@ namespace Taste.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    await _emailSender.SendEmailAsync(Input.Email, "Potvrdite Vaš email",
+                        $"Molimo Vas da potvrdite Vaš email <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>klikom ovde</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

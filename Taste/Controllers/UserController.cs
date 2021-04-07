@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,7 +32,7 @@ namespace Taste.Controllers
             var objFromDb = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == id);
             if (objFromDb == null)
             {
-                return Json(new { success = false, message = "Error while Locking/Unlocking" });
+                return Json(new { success = false, message = "Greška prilikom zaključavanja / otključavanja" });
             }
             if(objFromDb.LockoutEnd!=null && objFromDb.LockoutEnd > DateTime.Now)
             {
@@ -45,7 +45,7 @@ namespace Taste.Controllers
             _unitOfWork.Save();
 
             
-            return Json(new { success = true, message = "Operation Successful." });
+            return Json(new { success = true, message = "Operacija uspešna." });
         }
 
     }

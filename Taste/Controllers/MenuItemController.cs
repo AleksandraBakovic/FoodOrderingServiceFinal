@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -37,7 +37,7 @@ namespace Taste.Controllers
                 var objFromDb = _unitOfWork.MenuItem.GetFirstOrDefault(u => u.Id == id);
                 if (objFromDb == null)
                 {
-                    return Json(new { success = false, message = "Error while deleting." });
+                    return Json(new { success = false, message = "Greška prilikom brisanja." });
                 }
 
                 var imagePath = Path.Combine(_hostingEnvironment.WebRootPath, objFromDb.Image.TrimStart('\\'));
@@ -51,9 +51,9 @@ namespace Taste.Controllers
             }
             catch(Exception ex)
             {
-                return Json(new { success = false, message = "Error while deleting." });
+                return Json(new { success = false, message = "Greška prilikom brisanja." });
             }
-            return Json(new { success = true, message = "Delete success." });
+            return Json(new { success = true, message = "Uspešno obrisano." });
         }
     }
 }

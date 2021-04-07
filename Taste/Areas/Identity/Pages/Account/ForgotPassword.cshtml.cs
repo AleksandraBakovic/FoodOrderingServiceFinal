@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
@@ -58,8 +58,8 @@ namespace Taste.Areas.Identity.Pages.Account
 
                 await _emailSender.SendEmailAsync(
                     Input.Email,
-                    "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    "Resetuj šifru",
+                    $"Molimo Vas resetujte šifru <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>klikom ovde</a>.");
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

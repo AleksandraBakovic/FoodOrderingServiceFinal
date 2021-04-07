@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -57,12 +57,12 @@ namespace Taste.Areas.Identity.Pages.Account
             [EmailAddress]
             public string Email { get; set; }
             [Required]
-            [Display(Name = "Phone Number")]
+            [Display(Name = "Broj telefona")]
             public string PhoneNumber { get; set; }
             [Required]
-            [Display(Name ="First Name")]
+            [Display(Name ="Ime")]
             public string FirstName { get; set; }
-            [Display(Name = "Last Name")]
+            [Display(Name = "Prezime")]
             [Required]
             public string LastName { get; set; }
         }
@@ -85,13 +85,13 @@ namespace Taste.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (remoteError != null)
             {
-                ErrorMessage = $"Error from external provider: {remoteError}";
+                ErrorMessage = $"Greška u eksternom provajderu: {remoteError}";
                 return RedirectToPage("./Login", new {ReturnUrl = returnUrl });
             }
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
-                ErrorMessage = "Error loading external login information.";
+                ErrorMessage = "Greška pri učitavanju informacija o eksternoj prijavi.";
                 return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
 
@@ -99,7 +99,7 @@ namespace Taste.Areas.Identity.Pages.Account
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor : true);
             if (result.Succeeded)
             {
-                _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
+                _logger.LogInformation("{Name} se prijavio sa {LoginProvider} provajdera.", info.Principal.Identity.Name, info.LoginProvider);
                 return LocalRedirect(returnUrl);
             }
             if (result.IsLockedOut)
@@ -113,12 +113,12 @@ namespace Taste.Areas.Identity.Pages.Account
                 LoginProvider = info.LoginProvider;
                 if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
                 {
-                    string[] fullName = info.Principal.FindFirstValue(ClaimTypes.Name).Split(' ');
+                    string[] veljko = info.Principal.FindFirstValue(ClaimTypes.Name).Split(' ');
                     Input = new InputModel
                     {
                         Email = info.Principal.FindFirstValue(ClaimTypes.Email),
-                        FirstName=fullName[0],
-                        LastName=fullName[1]
+                        FirstName=veljko[0],
+                        LastName=veljko[1]
                     };
                 }
                 return Page();
@@ -132,7 +132,7 @@ namespace Taste.Areas.Identity.Pages.Account
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
-                ErrorMessage = "Error loading external login information during confirmation.";
+                ErrorMessage = "Greška pri učitavanju informacija o eksternoj prijavi tokom potvrde.";
                 return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
 
@@ -154,7 +154,7 @@ namespace Taste.Areas.Identity.Pages.Account
                     if (result.Succeeded)
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
+                        _logger.LogInformation("Korisnik je kreirao profil koristeći {Name} provajder.", info.LoginProvider);
 
                         var userId = await _userManager.GetUserIdAsync(user);
                         var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -165,8 +165,8 @@ namespace Taste.Areas.Identity.Pages.Account
                             values: new { area = "Identity", userId = userId, code = code },
                             protocol: Request.Scheme);
 
-                        await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                        await _emailSender.SendEmailAsync(Input.Email, "Potvrdite email adresu",
+                            $"Molimo Vas potvrdite profil <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>klikom ovde</a>.");
 
                         return LocalRedirect(returnUrl);
                     }

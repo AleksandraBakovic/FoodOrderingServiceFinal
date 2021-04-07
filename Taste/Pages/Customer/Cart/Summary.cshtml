@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model Taste.Pages.Customer.Cart.SummaryModel
 @inject  IOptions<Taste.Utility.StripeSettings> Stripe
 @using Microsoft.Extensions.Options
@@ -89,7 +89,7 @@
                                             <h6 class="my-0">@details.MenuItem.Name</h6>
                                             <small class="text-muted">Količina: @details.Count</small>
                                         </div>
-                                        <span class="text-muted">$@(details.MenuItem.Price * details.Count)</span>
+                                        <span class="text-muted">RSD@(details.MenuItem.Price * details.Count) </span>
                                         @{ total += (details.MenuItem.Price * details.Count);}
                                     </li>
                                     }
@@ -112,16 +112,16 @@
                                     class="stripe-button"
                                     data-key="@Stripe.Value.PublishableKey"
                                     data-amount="@OrderTotalForStripe"
-                                    data-name="Taste Restaurant"
-                                    data-label="Place Order"
-                                    data-description="Good Food, Good Mood."
+                                    data-name="Aqua Restaurant"
+                                    data-label="Naručite"
+                                    data-description="Uživajte u hrani!."
                                     data-locale="auto"
                                     data-allow-remember-me="false"
                                     data-image="https://stripe.com/img/documentation/checkout/marketplace.png">
                             </script>
 
                             <script>document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';</script>
-                            <button type="submit" id="btnPlaceOrder" onclick="return validateInput()" value="Place Order" class="btn btn-success form-control">Place Order</button>
+                            <button type="submit" id="btnPlaceOrder" onclick="return validateInput()" value="Place Order" class="btn btn-success form-control">Naručite</button>
                         </div>
                     </div>
                 </div>
@@ -135,7 +135,7 @@
 <script>
     $(function () {
         $("#datepicker").datepicker({ minDate: 1, maxDate: "+1W" });
-        $("#timepicker").timepicker({ 'minTime': '11:00 AM', 'maxTime': '9:00 PM', step: '30' });
+        $("#timepicker").timepicker({ 'minTime': '08:00 AM', 'maxTime': '01:00 AM', step: '30' });
     });
 
 
@@ -146,19 +146,19 @@
         var phone = document.getElementById("txtPhone").value;
 
         if (dt.toString() == '') {
-            swal("Error", "Please select pickup Date", "error");
+            swal("Error", "Molimo Vas selektujte datum", "error");
             return false;
         }
         if (time.toString() == '') {
-            swal("Error", "Please select pickup Time", "error");
+            swal("Error", "Molimo Vas selektujte datum", "error");
             return false;
         }
         if (name.toString() == '') {
-            swal("Error", "Please enter picup Name", "error");
+            swal("Error", "Molimo Vas upišite ime", "error");
             return false;
         }
         if (phone.toString() == '') {
-            swal("Error", "Please enter Phone Number", "error");
+            swal("Error", "Molimo Vas upišite broj telefona", "error");
             return false;
         }
         return true;

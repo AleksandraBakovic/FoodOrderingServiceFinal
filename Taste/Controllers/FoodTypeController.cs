@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -31,11 +31,11 @@ namespace Taste.Controllers
             var objFromDb = _unitOfWork.FoodType.GetFirstOrDefault(u => u.Id == id);
             if (objFromDb == null)
             {
-                return Json(new { success = false, message = "Error while deleting." });
+                return Json(new { success = false, message = "Greška prilikom brisanja." });
             }
             _unitOfWork.FoodType.Remove(objFromDb);
             _unitOfWork.Save();
-            return Json(new { success = true, message = "Delete success." });
+            return Json(new { success = true, message = "Uspešno obrisano." });
         }
     }
 }

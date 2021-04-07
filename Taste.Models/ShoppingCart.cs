@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -27,7 +27,7 @@ namespace Taste.Models
         public virtual ApplicationUser ApplicationUser { get; set; }
 
 
-        [Range(1,100, ErrorMessage ="Please select a count between 1 and 100")]
+        [Range(1,100, ErrorMessage ="Molimo Vas da izaberete broj između 1 i 100")]
         public int Count { get; set; }
     }
 }
